@@ -1,20 +1,80 @@
 @import "tailwindcss";
 
+/* ================= DESIGN TOKENS (from DESIGN.md) ================= */
+
+:root {
+  --color-primary: #004ac6;
+  --color-primary-container: #2563eb;
+  --color-surface: #f7f9fb;
+  --color-surface-container: #f2f4f6;
+  --color-surface-container-low: #f2f4f6;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-surface: #191c1e;
+  --color-tertiary: #005b7c;
+  --shadow-ambient: 0px 20px 40px rgba(0, 74, 198, 0.08);
+}
+
+
+
+/* ================= LAYER: UTILITIES ================= */
+
+@layer utilities {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-6;
+  }
+
+  /* reusable grid */
+  .grid-2 {
+    @apply grid md:grid-cols-2 gap-10;
+  }
+
+  .grid-3 {
+    @apply grid md:grid-cols-3 gap-6;
+  }
+
+  .grid-4 {
+    @apply grid md:grid-cols-4 gap-8;
+  }
+
+  /* section spacing */
+  .section {
+    @apply py-20;
+  }
+
+  .section-sm {
+    @apply py-12;
+  }
+
+  .section-lg {
+    @apply py-28;
+  }
+
+  .section-soft {
+    @apply py-20 bg-[#f7f9fb];
+  }
+
+  .section-muted {
+    @apply py-20 bg-[#f2f4f6];
+  }
+
+  /* helper */
+  .center {
+    @apply flex items-center justify-center;
+  }
+}
+
 /* ================= BASE ================= */
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-white text-gray-900 antialiased font-[Poppins];
-}
-
-/* ================= CONTAINER ================= */
-.container-custom {
-  @apply max-w-7xl mx-auto px-6;
+  @apply bg-[#f7f9fb] text-gray-900 antialiased;
 }
 
 /* ================= COLOR ================= */
+
 .bg-primary {
   @apply bg-gradient-to-r from-blue-600 to-blue-400 text-white;
 }
@@ -28,6 +88,7 @@ body {
 }
 
 /* ================= BUTTON ================= */
+
 .btn-primary {
   @apply bg-gradient-to-r from-blue-600 to-blue-400 
          text-white px-6 py-3 rounded-xl font-semibold 
@@ -43,14 +104,15 @@ body {
 }
 
 /* ================= CARD ================= */
+
 .card {
   @apply bg-white rounded-2xl p-6 
-         shadow-sm 
-         transition duration-300 
+         shadow-sm transition duration-300 
          hover:shadow-lg hover:-translate-y-1;
 }
 
 /* ================= TYPOGRAPHY ================= */
+
 .heading-xl {
   @apply text-4xl md:text-5xl font-bold leading-tight;
 }
@@ -63,79 +125,39 @@ body {
   @apply text-gray-500;
 }
 
-/* ================= SECTION ================= */
-.section {
-  @apply py-16;
-}
-
 /* ================= NAV ================= */
+
 .nav-link {
   @apply text-gray-700 uppercase font-medium px-3 py-2 rounded-lg 
          transition duration-200 
-         hover:bg-blue-50;
-}
-
-/* ================= UTIL ================= */
-.center {
-  @apply flex items-center justify-center;
+         hover:bg-blue-50 hover:text-blue-600;
 }
 
 /* ================= HERO ================= */
-/* ❌ JANGAN @apply container-custom */
+
 .hero {
   @apply relative overflow-hidden bg-gradient-to-r from-blue-600 to-blue-400 text-white;
 }
 
 .hero-container {
+  /* ❗ FIX: tidak pakai @apply container-custom */
   @apply max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-10 items-center;
 }
 
-/* ================= SERVICES ================= */
-.services-section {
-  @apply py-16 bg-gray-50;
-}
-
-.services-grid {
-  @apply max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-6;
-}
-
-/* ================= WHY ================= */
-.why-section {
-  @apply py-16 bg-blue-50;
-}
-
-.why-grid {
-  @apply max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8 text-center;
-}
-
-/* ================= PORTFOLIO ================= */
-.portfolio-section {
-  @apply py-16 bg-gray-50;
-}
-
-.portfolio-grid {
-  @apply max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-6;
-}
-
 /* ================= PROCESS ================= */
-.process-section {
-  @apply py-16 bg-blue-50;
-}
-
-.process-grid {
-  @apply grid md:grid-cols-4 gap-8 text-center relative;
-}
 
 .process-line {
   @apply hidden md:block absolute top-6 left-0 right-0 h-[2px] bg-blue-200;
 }
 
 /* ================= CTA ================= */
+
 .cta-section {
-  @apply bg-gradient-to-r from-blue-600 to-blue-400 text-white py-16 text-center;
+  @apply bg-gradient-to-r from-blue-600 to-blue-400 text-white py-20 text-center;
 }
 
-/* ================= ANIMATION ================= */
+/* ================= HOVER EFFECT ================= */
+
 .hover-lift {
   @apply transition duration-300 hover:-translate-y-1 hover:shadow-lg;
 }

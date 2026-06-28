@@ -1,215 +1,255 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Link from "next/link";
+
 import Image from "next/image";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  fadeUp,
+  stagger,
+  slideLeft,
+  slideRight,
+  viewportOnce,
+} from "@/lib/animations";
 
-/* ================= ANIMATION ================= */
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-};
-
-/* ================= PAGE ================= */
-export default function About() {
+export default function AboutPage() {
   return (
-    <>
-      <SectionOne />
-      <SectionTwo />
-      <SectionThree />
-    </>
-  );
-}
-
-//////////////////////////////////////////////////
-/* ================= SECTION 1 ================= */
-//////////////////////////////////////////////////
-
-function SectionOne() {
-  return (
-    <section className="section bg-gray-50">
-      <div className="container-custom grid md:grid-cols-2 gap-10 items-center">
-        {/* TEXT */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <h2 className="heading-lg mb-4">About Sadino Technology</h2>
-
-          <p className="text-muted mb-4">
-            Sadino Technology is a software house focused on building modern
-            digital solutions for businesses. We help companies grow through
-            scalable web applications, UI/UX design, and backend systems.
-          </p>
-
-          <p className="text-muted mb-4">
-            Founded in 2024, we started as a small development team and evolved
-            into a trusted partner for businesses looking to transform
-            digitally.
-          </p>
-
-          <div className="grid grid-cols-2 gap-4 mt-6">
-            <div>
-              <p className="font-semibold">📍 Location</p>
-              <p className="text-sm text-gray-500">Indonesia</p>
-            </div>
-            <div>
-              <p className="font-semibold">📅 Founded</p>
-              <p className="text-sm text-gray-500">2024</p>
-            </div>
-            <div>
-              <p className="font-semibold">👨‍💻 Team</p>
-              <p className="text-sm text-gray-500">Professional Developers</p>
-            </div>
-            <div>
-              <p className="font-semibold">🚀 Focus</p>
-              <p className="text-sm text-gray-500">Web & Digital Solutions</p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* IMAGE */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="flex justify-center"
-        >
-          <Image
-            src="/images/hero_laptop.png"
-            alt="About"
-            width={400}
-            height={400}
-            className="rounded-2xl"
-          />
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-//////////////////////////////////////////////////
-/* ================= SECTION 2 ================= */
-//////////////////////////////////////////////////
-
-function SectionTwo() {
-  const values = [
-    {
-      title: "Fast Execution",
-      desc: "We deliver projects quickly without compromising quality.",
-    },
-    {
-      title: "Clean & Scalable",
-      desc: "Built with maintainable and future-proof architecture.",
-    },
-    {
-      title: "Business Focused",
-      desc: "We focus on results that help your business grow.",
-    },
-  ];
-
-  return (
-    <section className="section">
-      <div className="container-custom text-center mb-12">
-        <h2 className="heading-lg mb-2">Our Values</h2>
-        <p className="text-muted">
-          Principles that guide how we build and deliver
-        </p>
-      </div>
-
-      <motion.div
-        className="container-custom grid md:grid-cols-3 gap-6"
+    <div className="bg-surface text-on-surface">
+      {/* ================= HERO ================= */}
+      <motion.section
         variants={stagger}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true }}
+        viewport={viewportOnce}
+        className="pt-40 pb-24 max-w-7xl mx-auto px-8"
       >
-        {values.map((item, i) => (
-          <motion.div key={i} variants={fadeUp} className="card text-center">
-            <h3 className="font-semibold mb-2">{item.title}</h3>
-            <p className="text-sm text-gray-500">{item.desc}</p>
-          </motion.div>
-        ))}
-      </motion.div>
-    </section>
-  );
-}
-
-//////////////////////////////////////////////////
-/* ================= SECTION 3 ================= */
-//////////////////////////////////////////////////
-
-function SectionThree() {
-  const images = Array.from({ length: 12 }).map(
-    (_, i) => `https://picsum.photos/400/300?random=${i + 1}`,
-  );
-
-  const [page, setPage] = useState(1);
-  const perPage = 6;
-
-  const start = (page - 1) * perPage;
-  const current = images.slice(start, start + perPage);
-
-  const totalPages = Math.ceil(images.length / perPage);
-
-  return (
-    <section className="section bg-gray-50">
-      <div className="container-custom">
-        {/* TITLE */}
-        <div className="text-center mb-10">
-          <h2 className="heading-lg">Our Gallery</h2>
-          <p className="text-muted">A glimpse of our work and activities</p>
-        </div>
-
-        {/* GRID */}
-        <motion.div
-          className="grid md:grid-cols-3 gap-6 mb-8"
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
+        <motion.span
+          variants={fadeUp}
+          className="inline-block py-1 px-3 bg-blue-100 text-blue-600 text-xs font-bold rounded-full mb-6"
         >
-          {current.map((img, i) => (
+          ESTABLISHED 2019
+        </motion.span>
+
+        <motion.h1
+          variants={fadeUp}
+          className="text-6xl md:text-7xl font-extrabold leading-tight mb-8"
+        >
+          Crafting the{" "}
+          <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+            Future
+          </span>{" "}
+          of Technology
+        </motion.h1>
+
+        <motion.p
+          variants={fadeUp}
+          className="text-xl text-gray-500 mb-10 max-w-2xl"
+        >
+          We are more than a software house. We are digital architects dedicated
+          to transforming complex business challenges into seamless,
+          high-performance technological realities.
+        </motion.p>
+
+        <motion.div variants={fadeUp} className="flex gap-4">
+          <Link href="/services" className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:opacity-90 transition">
+            Our Ecosystem
+          </Link>
+          <button className="bg-[#f2f4f6] px-8 py-4 rounded-xl font-bold hover:bg-gray-200 transition">
+            Watch Film
+          </button>
+        </motion.div>
+      </motion.section>
+
+      {/* ================= STATS ================= */}
+      <motion.section
+        variants={stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        className="py-20 bg-[#f2f4f6]"
+      >
+        <div className="max-w-7xl mx-auto px-8 grid md:grid-cols-3 gap-8">
+          {[
+            ["100+", "Projects Delivered"],
+            ["5+", "Years Excellence"],
+            ["50+", "Global Clients"],
+          ].map((item, i) => (
             <motion.div
               key={i}
               variants={fadeUp}
-              className="relative h-40 rounded-xl overflow-hidden group"
+              className="bg-white p-8 rounded-xl flex gap-6 border-l-4 border-blue-600"
             >
-              <Image
-                src={img}
-                alt="gallery"
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover group-hover:scale-105 transition"
-              />
+              <h3 className="text-4xl font-bold text-blue-600">{item[0]}</h3>
+              <div>
+                <p className="font-semibold">{item[1]}</p>
+              </div>
             </motion.div>
           ))}
+        </div>
+      </motion.section>
+
+      {/* ================= STORY ================= */}
+      <motion.section
+        variants={stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        className="py-32 max-w-7xl mx-auto px-8 grid md:grid-cols-2 gap-20 items-center"
+      >
+        <motion.div variants={slideRight}>
+          <Image
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+            alt="office"
+            width={600}
+            height={500}
+            className="rounded-3xl object-cover w-full h-full"
+          />
         </motion.div>
 
-        {/* PAGINATION */}
-        <div className="flex justify-center gap-3">
-          {Array.from({ length: totalPages }).map((_, i) => (
-            <button
+        <motion.div variants={slideLeft}>
+          <h2 className="text-4xl font-bold mb-6">Our Story</h2>
+          <p className="text-gray-500 mb-4">
+            Founded in 2019, Sadino Technology emerged from a simple
+            observation: bridging business and technology was fragmented.
+          </p>
+          <p className="text-gray-500 mb-6">
+            Today we are a multidisciplinary team building scalable digital
+            products with empathy.
+          </p>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-4 bg-gray-100 rounded-xl">
+              <p className="text-blue-600 font-bold">2019</p>
+              <p className="text-sm">Founded</p>
+            </div>
+            <div className="p-4 bg-gray-100 rounded-xl">
+              <p className="text-blue-600 font-bold">2022</p>
+              <p className="text-sm">Global Expansion</p>
+            </div>
+          </div>
+        </motion.div>
+      </motion.section>
+
+      {/* ================= VALUES ================= */}
+      <motion.section
+        variants={stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        className="py-32 bg-[#f2f4f6]"
+      >
+        <div className="max-w-7xl mx-auto px-8 text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4">Values that Define Us</h2>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-8 grid md:grid-cols-3 gap-8">
+          {["Innovation", "Quality", "Client-Centric"].map((v, i) => (
+            <motion.div
               key={i}
-              onClick={() => setPage(i + 1)}
-              className={`
-                w-8 h-8 rounded-full text-sm
-                ${page === i + 1 ? "bg-blue-600 text-white" : "bg-white border"}
-              `}
+              variants={fadeUp}
+              whileHover={{ y: -8 }}
+              className="bg-white p-10 rounded-2xl shadow"
             >
-              {i + 1}
-            </button>
+              <h3 className="text-xl font-bold mb-4">{v}</h3>
+              <p className="text-gray-500 text-sm">
+                High standard execution and forward thinking mindset.
+              </p>
+            </motion.div>
           ))}
         </div>
-      </div>
-    </section>
+      </motion.section>
+
+      {/* ================= LEADER ================= */}
+      <motion.section
+        variants={stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        className="py-32 max-w-7xl mx-auto px-8"
+      >
+        <div className="grid md:grid-cols-2 bg-gray-100 rounded-3xl overflow-hidden">
+          <motion.div variants={slideRight}>
+            <Image
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a"
+              alt="ceo"
+              width={600}
+              height={600}
+              className="object-cover h-full"
+            />
+          </motion.div>
+
+          <motion.div
+            variants={slideLeft}
+            className="p-16 flex flex-col justify-center"
+          >
+            <p className="text-blue-600 font-bold text-sm mb-2">LEADERSHIP</p>
+            <h2 className="text-3xl font-bold mb-4">Alex Sadino</h2>
+            <p className="text-gray-500 italic">
+              “Technology is most powerful when it becomes invisible.”
+            </p>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* ================= CULTURE ================= */}
+      <motion.section
+        variants={stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        className="py-32 max-w-7xl mx-auto px-8 grid lg:grid-cols-12 gap-12"
+      >
+        <motion.div variants={slideRight} className="lg:col-span-5">
+          <h2 className="text-4xl font-bold mb-6">Life at Sadino</h2>
+          <p className="text-gray-500 mb-6">
+            We build a culture of innovation and curiosity.
+          </p>
+
+          <ul className="space-y-3 mb-6">
+            <li>✔ Hybrid Work</li>
+            <li>✔ Innovation Retreat</li>
+            <li>✔ Learning Budget</li>
+          </ul>
+
+          <Link href="/contact" className="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition">
+            Join the Team
+          </Link>
+        </motion.div>
+
+        <motion.div
+          variants={slideLeft}
+          className="lg:col-span-7 grid grid-cols-2 gap-4"
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1551434678-e076c223a692"
+            alt=""
+            width={400}
+            height={300}
+            className="rounded-xl w-full object-cover aspect-[4/3]"
+          />
+          <Image
+            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+            alt=""
+            width={400}
+            height={300}
+            className="rounded-xl w-full object-cover aspect-[4/3]"
+          />
+          <Image
+            src="https://images.unsplash.com/photo-1551434678-e076c223a692"
+            alt=""
+            width={400}
+            height={300}
+            className="rounded-xl w-full object-cover aspect-[4/3]"
+          />
+          <Image
+            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+            alt=""
+            width={400}
+            height={300}
+            className="rounded-xl w-full object-cover aspect-[4/3]"
+          />
+        </motion.div>
+      </motion.section>
+    </div>
   );
 }

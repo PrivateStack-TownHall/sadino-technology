@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
-// 🔤 FONT (Poppins)
+// ✅ FIXED PATH (sesuai struktur kamu)
+import Navbar from "@/components/layouts/Navbar";
+import Footer from "@/components/layouts/Footer";
+
+// 🔤 FONT CONFIG
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
+  display: "swap", // 🔥 performance optimization
 });
 
-// 🌐 Metadata
+// 🌐 METADATA (SEO READY)
 export const metadata: Metadata = {
   title: {
     default: "Sadino Technology",
@@ -19,9 +22,17 @@ export const metadata: Metadata = {
   },
   description:
     "Software house specializing in web development, UI/UX design, and scalable backend solutions.",
+  keywords: [
+    "Software House",
+    "Web Development",
+    "UI UX Design",
+    "Backend API",
+    "Mobike Apps",
+  ],
+  authors: [{ name: "Sadino Technology" }],
 };
 
-// 🧩 Layout
+// 🧩 ROOT LAYOUT
 export default function RootLayout({
   children,
 }: {
@@ -29,15 +40,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${poppins.variable} h-full`}>
-      <body className="min-h-screen flex flex-col antialiased bg-white text-gray-900 font-[var(--font-poppins)]">
-        {/* NAVBAR */}
+      <body className="min-h-screen flex flex-col bg-white text-gray-900 antialiased font-[var(--font-poppins)]">
+        {/* 🔝 NAVBAR */}
         <Navbar />
 
-        {/* CONTENT */}
+        {/* 📄 PAGE CONTENT */}
         <main className="flex-1">{children}</main>
 
-        {/* FOOTER (next step) */}
-        {/* <Footer /> */}
+        {/* 🔻 FOOTER */}
         <Footer />
       </body>
     </html>

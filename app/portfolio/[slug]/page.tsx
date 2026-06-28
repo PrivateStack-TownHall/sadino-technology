@@ -1,13 +1,17 @@
-import { portfolios } from "@/constants/data";
 import { notFound } from "next/navigation";
-import PortfolioDetailClient from "./PortfolioDetailClient";
+import PortfolioClientDetail from "./PortfolioClientDetail";
+import { portfolios } from "@/constants/portfolios";
 
-export default async function Page({ params }: any) {
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function Page({ params }: Props) {
   const { slug } = await params;
 
-  const project = portfolios.find((item) => item.slug === slug);
+  const portfolio = portfolios.find((p) => p.slug === slug);
 
-  if (!project) return notFound();
+  if (!portfolio) return notFound();
 
-  return <PortfolioDetailClient project={project} />;
+  return <PortfolioClientDetail portfolio={portfolio} />;
 }
